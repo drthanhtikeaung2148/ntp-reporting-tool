@@ -33,3 +33,14 @@ if uploaded_file:
 
         with open(zip_path, "rb") as f:
             st.download_button("Download Reports", f, file_name="reports.zip")
+st.subheader("📊 Quick Dashboard")
+
+if uploaded_file:
+    st.write("### Township Summary")
+
+    summary = df["Select Township"].value_counts().reset_index()
+    summary.columns = ["Township", "Count"]
+
+    st.dataframe(summary)
+
+    st.bar_chart(summary.set_index("Township"))
